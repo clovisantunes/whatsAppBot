@@ -1,0 +1,62 @@
+/* Importação da fonte (ex: Poppins) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.navBar_Container {
+    width: 100%;
+    height: 4em; /* Aumentei a altura para dar mais destaque */
+    background: linear-gradient(135deg, #075E54, #128C7E); /* Gradiente moderno */
+    display: flex;
+    justify-content: center; /* Centraliza os itens */
+    align-items: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
+    font-family: 'Poppins', sans-serif; /* Fonte moderna */
+}
+
+.navBar_Menu {
+    display: flex;
+    gap: 2em; /* Aumentei o espaçamento entre os itens */
+    padding: 0 2em; /* Ajuste no padding */
+}
+
+.navBar_Item {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em; /* Tamanho da fonte ajustado */
+    font-weight: 500; /* Peso da fonte para melhor legibilidade */
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    padding: 0.5em 0; /* Espaçamento interno para melhor toque */
+}
+
+/* Efeito de underline animado */
+.navBar_Item::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #25D366; /* Cor do WhatsApp para destaque */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
+}
+
+.navBar_Item:hover {
+    color: #25D366 ; /* Cor de hover suave */
+}
+
+.navBar_Item:hover::after {
+    width: 100%; /* Underline completo ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navBar_Menu {
+        gap: 1em; /* Reduz o espaçamento em telas menores */
+        padding: 0 1em; /* Ajuste no padding para mobile */
+    }
+
+    .navBar_Item {
+        font-size: 1em; /* Tamanho da fonte menor para mobile */
+    }
+}

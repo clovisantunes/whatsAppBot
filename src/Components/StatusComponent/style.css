@@ -1,0 +1,157 @@
+.statusComponent_Container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    transition: transform 0.5s ease-in-out; 
+  }
+  
+  .statusComponent_Container.ultra_left {
+    transform: translateX(-200%); /* Fora da tela à esquerda */
+  }
+  
+  .statusComponent_Container.left {
+    transform: translateX(-100%); /* À esquerda */
+  }
+  
+  .statusComponent_Container.center {
+    transform: translateX(0); /* Centralizado */
+  }
+  
+  .statusComponent_Container.right {
+    transform: translateX(100%); /* À direita */
+  }
+  .statusComponent_Container.ultra_right {
+    transform: translateX(100%); 
+  }
+  
+  .statusComponent_Components {
+    width: 60%;
+    height: 680px;;
+    display: flex;
+    flex-direction: column;
+    background-color: #ECE5DD;
+    align-items: normal;
+    justify-content: left;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  /* Estatísticas */
+.statusStats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.statItem {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.statItem.success {
+  background-color: #e8f5e9; /* Verde claro */
+  color: #2e7d32; /* Verde escuro */
+}
+
+.statItem.error {
+  background-color: #ffebee; /* Vermelho claro */
+  color: #c62828; /* Vermelho escuro */
+}
+
+/* Filtros */
+.statusFilters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.statusFilters button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5; /* Cinza claro */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.statusFilters button.active {
+  background-color: #25D366; /* Verde */
+  color: white;
+}
+
+.statusFilters button:hover {
+  transform: scale(1.05);
+}
+
+/* Lista de Status */
+.statusList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.statusItem {
+  padding: 15px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.statusItem.success {
+  border-left: 5px solid #4caf50; /* Verde */
+}
+
+.statusItem.error {
+  border-left: 5px solid #f44336; /* Vermelho */
+}
+
+.statusHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.statusHeader .number {
+  font-weight: 500;
+}
+
+.statusHeader .timestamp {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.errorMessage {
+  color: #c62828; /* Vermelho escuro */
+  font-size: 0.9rem;
+}
+
+.successMessage {
+  color: #2e7d32; /* Verde escuro */
+  font-size: 0.9rem;
+}

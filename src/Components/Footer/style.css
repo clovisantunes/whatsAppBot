@@ -1,0 +1,14 @@
+.footer {
+    background-color: #272727; /* Cor de fundo escura */
+    color: #fff; /* Cor do texto branco */
+    text-align: center; /* Centraliza o texto */
+    padding: 2px 0; /* Espaçamento interno */
+    font-size: 14px; /* Tamanho da fonte */
+    position: fixed; /* Fixa o rodapé na parte inferior da tela */
+    bottom: 0; /* Alinha o rodapé na parte inferior */
+    width: 100%; /* Largura total */
+  }
+  
+  .footer p {
+    margin: 5px 0; /* Espaçamento entre os parágrafos */
+  }

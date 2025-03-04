@@ -1,0 +1,91 @@
+.modal {
+    width: 400px; /* Largura um pouco maior */
+    height: auto; /* Altura automática para se ajustar ao conteúdo */
+    position: fixed; /* Fixo para cobrir toda a tela */
+    z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+    background-color: white;
+    border-radius: 12px; /* Bordas mais arredondadas */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Espaçamento interno */
+    top: 34%;
+    left: 27%;
+    font-family: 'Poppins', sans-serif; /* Fonte moderna */
+    
+}
+
+.modal h2 {
+    font-size: 1.5rem; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+    margin-bottom: 15px; /* Espaçamento inferior */
+}
+
+.modal input {
+    width: 100%; /* Largura total */
+    padding: 10px; /* Espaçamento interno */
+    font-size: 1rem; /* Tamanho da fonte */
+    border: 1px solid #ccc; /* Borda sutil */
+    border-radius: 8px; /* Bordas arredondadas */
+    margin-bottom: 15px; /* Espaçamento inferior */
+    outline: none; /* Remove o contorno padrão */
+    transition: border-color 0.3s ease; /* Transição suave */
+}
+
+.modal input:focus {
+    border-color: #25D366; /* Cor da borda ao focar */
+    box-shadow: 0 0 8px rgba(37, 211, 102, 0.3); /* Sombra ao focar */
+}
+
+.modal p {
+    font-size: 1rem; /* Tamanho da fonte */
+    color: #555; /* Cor do texto */
+    margin-bottom: 20px; /* Espaçamento inferior */
+    text-align: center; /* Centraliza o texto */
+}
+
+.modal button {
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 1rem; /* Tamanho da fonte */
+    font-weight: 500; /* Peso da fonte */
+    border: none; /* Remove a borda */
+    border-radius: 8px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: all 0.3s ease; /* Transição suave */
+    margin: 0 5px; /* Espaçamento entre botões */
+}
+
+.modal button:first-of-type {
+    background-color: #25D366; /* Cor de fundo do botão Salvar */
+    color: white; /* Cor do texto */
+}
+
+.modal button:first-of-type:hover {
+    background-color: #1da851; /* Cor de fundo ao passar o mouse */
+    transform: scale(1.05); /* Efeito de escala */
+}
+
+.modal button:last-of-type {
+    background-color: #FF6B6B; /* Cor de fundo do botão Fechar */
+    color: white; /* Cor do texto */
+}
+
+.modal button:last-of-type:hover {
+    background-color: #e55a5a; /* Cor de fundo ao passar o mouse */
+    transform: scale(1.05); /* Efeito de escala */
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.modal {
+    animation: fadeIn 0.3s ease-out; /* Aplica a animação */
+}

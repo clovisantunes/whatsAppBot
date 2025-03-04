@@ -1,0 +1,210 @@
+.main_Container {
+    width: 100%;
+    height: 90vh; /* Ocupa 100% da altura da tela */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    padding: 1em;
+    transition: transform 0.5s ease-in-out;
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+}
+
+/* Posicionamento */
+.main_Container.ultra_left {
+  transform: translateX(-200%); /* Fora da tela à esquerda */
+}
+
+.main_Container.left {
+  transform: translateX(-100%); /* À esquerda */
+}
+
+.main_Container.center {
+  transform: translateX(0); /* Centralizado */
+}
+
+.main_Container.right {
+  transform: translateX(100%); /* À direita */
+}
+
+/* Estilos do conteúdo */
+.main_component {
+  width: 60%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ECE5DD;
+  align-items: normal;
+  justify-content: left;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+    font-size: 24px;
+    color: #075E54;
+    margin: .5em 0;
+
+}
+
+.card_one_input {
+    display: flex;
+    gap: 1em;
+}
+
+.inputNumber {
+    width: 100%;
+    max-width: 300px;
+    height: 1.5em;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Efeito de foco no input */
+.inputNumber:focus {
+    border-color: #25D366;
+    box-shadow: 0px 0px 8px rgba(37, 211, 102, 0.5);
+}
+
+.buttonNumber {
+    width: 12em;
+    height: 2em;
+    background-color: #25D366;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.buttonNumber:hover {
+    background-color: #1da851;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .card_one_input {
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+}
+.savedNumbers_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    min-height: 120px;
+    max-height: 200px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 6px;
+}
+
+.savedNumber {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #075E54;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    min-width: 120px; /* Garante que não fiquem muito pequenos */
+    height: 30px; /* Altura fixa para não diminuir */
+    white-space: nowrap; /* Impede quebra de linha dentro do número */
+}
+
+.deleteButton {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 8px;
+}
+
+.deleteButton:hover {
+    color: #ff4d4d;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .card_one_input {
+        flex-direction: column;
+    }
+
+    .savedNumbers_container {
+        justify-content: center;
+    }
+}
+/* Estilização da barra de rolagem */
+.savedNumbers_container {
+    scrollbar-width: thin; /* Para Firefox */
+    scrollbar-color: #25D366 #ECE5DD; /* Cor do thumb e track */
+}
+
+/* Estilização do Scroll para WebKit (Chrome, Edge, Safari) */
+.savedNumbers_container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.savedNumbers_container::-webkit-scrollbar-track {
+    background: #ECE5DD;
+    border-radius: 8px;
+}
+
+.savedNumbers_container::-webkit-scrollbar-thumb {
+    background: #25D366;
+    border-radius: 8px;
+}
+
+.savedNumbers_container::-webkit-scrollbar-thumb:hover {
+    background: #1da851;
+}
+
+/* Animação ao excluir um item */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.savedNumber.removing {
+    animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+#Main {
+    transform: translateX(0); /* Centralizado */
+  }
+  #Main.active {
+    transform: translateX(0); /* Main fica no centro */
+  }
+  #Main.inactive {
+    transform: translateX(-100%); /* Main vai para a esquerda */
+  }
