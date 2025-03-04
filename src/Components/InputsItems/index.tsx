@@ -7,12 +7,12 @@ import {
   HandleDeleteMessage,
 } from "./utils/GetInputInformations.ts";
 import { toast } from "react-toastify";
-import { useResendMessageContext } from "../../ResendMessageContext.ts";
+import { useResendMessageContext } from "../../Contexts/ResendMessageContext.ts";
 import Modal from "../UI/Modal/index.tsx";
 import { FaSave, FaTrash } from 'react-icons/fa';
-import { useImageContext } from "../../ImageContext.ts"; 
-import { useDelayContext } from "../../DelayContext.ts";
-import { useStatusContext } from '../../StatusContext.tsx'; 
+import { useImageContext } from "../../Contexts/ImageContext.ts"; 
+import { useDelayContext } from "../../Contexts/DelayContext.ts";
+import { useStatusContext } from '../../Contexts/StatusContext.tsx'; 
 
 interface InputItemsProps {
   savedNumbers: string[];
@@ -246,7 +246,7 @@ export default function InputItems({
           onClick={() => {
             const selectedMsg = customMessages.find((msg) => msg.message === selectedMessage);
             if (selectedMsg) {
-              handleDeleteMessage(selectedMsg.id); // Passa o id da mensagem selecionada
+              handleDeleteMessage(selectedMsg.id); 
             } else {
               toast.error("Nenhuma mensagem selecionada para excluir.");
             }

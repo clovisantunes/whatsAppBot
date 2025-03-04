@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputItems from "../InputsItems/index.tsx";
-import FunctionComponents from "../FunctionComponents/index.tsx"; // Importe o FunctionComponents
+import { useStatusContext } from '../../StatusContext.tsx'; // Importe o contexto
 
 type MainProps = {
   id: string;
@@ -13,23 +13,24 @@ type MainProps = {
 export default function Main({ id, className }: MainProps) {
   const [number, setNumber] = useState("");
   const [savedNumbers, setSavedNumbers] = useState<string[]>([]);
-  const [images, setImages] = useState<File[]>([]); // Estado para armazenar as imagens
+  const [images, setImages] = useState<File[]>([]);
+  const { setTotalNumbersToSend } = useStatusContext(); // Acesse a função para atualizar o total de números
 
   const isValidPhoneNumber = (num: string) => {
-    return /^55\d{10}$/.test(num); 
+    return /^55\d{10}$/.test(num);
   };
 
   const formatPhoneNumber = (num: string) => {
-    const numericValue = num.replace(/\D/g, ""); 
-  
+    const numericValue = num.replace(/\D/g, "");
+
     if (numericValue.startsWith("55") && numericValue.length === 13) {
       return numericValue.slice(0, 10) + numericValue.slice(11);
     }
-  
+
     if (!numericValue.startsWith("55")) {
       return `55${numericValue}`;
     }
-  
+
     return numericValue;
   };
 
@@ -83,6 +84,11 @@ export default function Main({ id, className }: MainProps) {
     setImages(newImages);
   };
 
+  // Atualiza o total de números a enviar sempre que savedNumbers mudar
+  useEffect(() => {
+    setTotalNumbersToSend(savedNumbers.length);
+  }, [savedNumbers, setTotalNumbersToSend]);
+
   return (
     <div className={`main_Container ${className}`} id={id}>
       <ToastContainer />
@@ -98,7 +104,7 @@ export default function Main({ id, className }: MainProps) {
               placeholder="Digite o número (ex: 5199999999)"
               value={number}
               onChange={handleInputChange}
-              maxLength={12} 
+              maxLength={12}
             />
             <button className="buttonNumber" onClick={handleSave}>
               Salvar
@@ -122,8 +128,6 @@ export default function Main({ id, className }: MainProps) {
         </div>
 
         <InputItems savedNumbers={savedNumbers} onAddNumber={handleAddFromInputItems} />
-        
-       
       </div>
     </div>
   );
