@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import './style.css';
-import { useImageContext } from '../../ImageContext.ts'; // Contexto das imagens
-import { useDelayContext } from '../../DelayContext.ts'; // Contexto do atraso
-import { useResendMessageContext } from '../../ResendMessageContext.ts'; 
+import { useImageContext } from '../../Contexts/ImageContext.ts'; // Contexto das imagens
+import { useDelayContext } from '../../Contexts/DelayContext.ts'; // Contexto do atraso
+import { useResendMessageContext } from '../../Contexts/ResendMessageContext.ts'; 
 
 type FunctionComponentsProps = {
   id: string;

@@ -6,10 +6,10 @@ import FunctionComponents from './Components/FunctionComponents/index.tsx';
 import StatusComponent from './Components/StatusComponent/index.tsx';
 import './App.css';
 import Footer from './Components/Footer/index.tsx';
-import ImageContext from './ImageContext.ts'; // Importe o contexto das imagens
-import DelayContext from './DelayContext.ts'; // Importe o contexto do atraso
-import ResendMessageContext from './ResendMessageContext.ts';
-import { StatusProvider } from './StatusContext.tsx';
+import ImageContext from './Contexts/ImageContext.ts'; // Importe o contexto das imagens
+import DelayContext from './Contexts/DelayContext.ts'; // Importe o contexto do atraso
+import ResendMessageContext from './Contexts/ResendMessageContext.ts';
+import { StatusProvider } from './Contexts/StatusContext.tsx';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState('inicio');

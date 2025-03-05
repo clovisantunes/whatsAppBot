@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.css';
-import { useStatusContext } from '../../StatusContext.tsx';
+import { useStatusContext } from '../../Contexts/StatusContext.tsx';
 
 type StatusComponentProps = {
   className: string;

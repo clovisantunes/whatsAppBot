@@ -3,7 +3,7 @@ import "./style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputItems from "../InputsItems/index.tsx";
-import { useStatusContext } from '../../StatusContext.tsx'; // Importe o contexto
+import { useStatusContext } from '../../Contexts/StatusContext.tsx'; // Importe o contexto
 
 type MainProps = {
   id: string;
