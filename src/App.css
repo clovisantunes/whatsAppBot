@@ -1,10 +1,14 @@
 body {
-  margin: 0;
+  margin: 0; /* Remove margens padrão */
+  background-color: #333;
+  height: 100vh; /* Ocupa 100% da altura da tela */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased; /* Melhora a renderização das fontes */
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column; /* Organiza os elementos em coluna */
 }
 
 code {
@@ -12,12 +16,14 @@ code {
     monospace;
 }
 
+/* Container principal */
 .container {
   position: relative;
   width: 100%;
-  height: 100%;
-  overflow: hidden; 
-  background-color: #333;/* Garante que os componentes fora da tela não sejam visíveis */
+  height: 100%; /* Ocupa 100% da altura do body */
+  overflow: hidden; /* Garante que nada ultrapasse os limites */
+  background-color: #333; /* Cor de fundo */
+  flex: 1; /* Faz o container ocupar todo o espaço disponível */
 }
 
 /* Estilo base para Main e FunctionComponents */
@@ -25,10 +31,34 @@ code {
 #FunctionComponents {
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 100%; /* Ocupa 100% da altura do container */
   transition: transform 0.5s ease-in-out; /* Animação suave */
+  box-sizing: border-box; /* Garante que padding e bordas não aumentem o tamanho */
 }
 
+/* Exemplo de posicionamento */
+#Main.center {
+  transform: translateX(0); /* Posição central */
+}
 
+#Main.left {
+  transform: translateX(-100%); /* Move para a esquerda */
+}
 
+#Main.right {
+  transform: translateX(100%); /* Move para a direita */
+}
+
+#FunctionComponents.center {
+  transform: translateX(0); /* Posição central */
+}
+
+#FunctionComponents.left {
+  transform: translateX(-100%); /* Move para a esquerda */
+}
+
+#FunctionComponents.right {
+  transform: translateX(100%); /* Move para a direita */
+}

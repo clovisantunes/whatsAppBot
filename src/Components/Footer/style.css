@@ -4,9 +4,10 @@
     text-align: center; /* Centraliza o texto */
     padding: 2px 0; /* Espaçamento interno */
     font-size: 14px; /* Tamanho da fonte */
-    position: fixed; /* Fixa o rodapé na parte inferior da tela */
     bottom: 0; /* Alinha o rodapé na parte inferior */
     width: 100%; /* Largura total */
+    position: absolute;
+    bottom: 0;
   }
   
   .footer p {

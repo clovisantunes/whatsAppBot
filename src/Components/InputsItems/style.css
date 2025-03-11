@@ -1,9 +1,255 @@
+.main_Container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    transition: transform 0.5s ease-in-out;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .main_Container {
+        height: auto;
+        padding: 0.5em;
+    }
+}
+
+/* Posicionamento */
+.main_Container.ultra_left {
+  transform: translateX(-200%);
+}
+
+.main_Container.left {
+  transform: translateX(-100%);
+}
+
+.main_Container.center {
+  transform: translateX(0);
+}
+
+.main_Container.right {
+  transform: translateX(100%);
+}
+
+/* Estilos do conteúdo */
+.main_component {
+    width: 60%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #ECE5DD;
+    align-items: normal;
+    justify-content: left;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+@media (max-width: 768px) {
+    .main_component {
+        width: 90%;
+        height: auto;
+        padding: 1em;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 24px;
+    color: #075E54;
+    margin: .5em 0;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 20px;
+    }
+}
+
+.card_one_input {
+    display: flex;
+    gap: 1em;
+}
+
+.inputNumber {
+    width: 100%;
+    max-width: 300px;
+    height: 1.5em;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.buttonNumber {
+    width: 12em;
+    height: 2em;
+    background-color: #25D366;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.buttonNumber:hover {
+    background-color: #1da851;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .card_one_input {
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .inputNumber {
+        max-width: 100%;
+    }
+
+    .buttonNumber {
+        width: 100%;
+    }
+}
+
+.savedNumbers_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    min-height: 120px;
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 6px;
+}
+
+@media (max-width: 768px) {
+    .savedNumbers_container {
+        max-height: 150px;
+        padding: 5px;
+        justify-content: center;
+    }
+}
+
+.savedNumber {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #075E54;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    min-width: 120px;
+    height: 30px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .savedNumber {
+        min-width: 100px;
+        padding: 6px 10px;
+    }
+}
+
+.deleteButton {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 8px;
+}
+
+.deleteButton:hover {
+    color: #ff4d4d;
+}
+
+/* Estilização da barra de rolagem */
+.savedNumbers_container {
+    scrollbar-width: thin;
+    scrollbar-color: #25D366 #ECE5DD;
+}
+
+.savedNumbers_container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.savedNumbers_container::-webkit-scrollbar-track {
+    background: #ECE5DD;
+    border-radius: 8px;
+}
+
+.savedNumbers_container::-webkit-scrollbar-thumb {
+    background: #25D366;
+    border-radius: 8px;
+}
+
+.savedNumbers_container::-webkit-scrollbar-thumb:hover {
+    background: #1da851;
+}
+
+/* Animação ao excluir um item */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.savedNumber.removing {
+    animation: fadeOut 0.2s ease-in-out forwards;
+}
+
+#Main {
+    transform: translateX(0);
+}
+
+#Main.active {
+    transform: translateX(0);
+}
+
+#Main.inactive {
+    transform: translateX(-100%);
+}
+
+@media (max-width: 768px) {
+    #Main.inactive {
+        transform: translateX(-100%);
+    }
+}
+
+/* Estilos para o .inputItemsContainer */
 .inputItemsContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin: 20px auto;
     width: 100%;
 }
 
@@ -38,8 +284,6 @@
     outline: none;
 }
 
-
-
 .addButton {
     padding: 8px 12px;
     font-size: 1rem;
@@ -66,6 +310,7 @@
     outline: none;
     resize: none;
 }
+
 .customMessage:focus {
     border-color: #25D366;
     box-shadow: 0px 0px 8px rgba(37, 211, 102, 0.5);
@@ -97,9 +342,7 @@
         width: 100%;
     }
 
-    .addButton, .deleteOption {
-        width: 100%;
-    }
+  
 }
 
 /* Estilo base para os botões */
@@ -113,28 +356,28 @@
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease-in-out;
-  }
-  
-  /* Estilo específico para o botão de salvar */
-  .saveOption {
+}
+
+/* Estilo específico para o botão de salvar */
+.saveOption {
     color: #25D366; /* Verde do WhatsApp */
     background-color: rgba(37, 211, 102, 0.1); /* Fundo transparente */
-  }
-  
-  .saveOption:hover {
+}
+
+.saveOption:hover {
     color: #fff; /* Texto branco ao passar o mouse */
     background-color: #25D366; /* Fundo verde ao passar o mouse */
     transform: scale(1.1); /* Aumenta levemente o botão */
-  }
-  
-  /* Estilo específico para o botão de deletar */
-  .deleteOption {
+}
+
+/* Estilo específico para o botão de deletar */
+.deleteOption {
     color: #FF6B6B; /* Vermelho claro */
     background-color: rgba(255, 107, 107, 0.1); /* Fundo transparente */
-  }
-  
-  .deleteOption:hover {
+}
+
+.deleteOption:hover {
     color: #fff; /* Texto branco ao passar o mouse */
     background-color: #FF6B6B; /* Fundo vermelho ao passar o mouse */
     transform: scale(1.1); /* Aumenta levemente o botão */
-  }
+}

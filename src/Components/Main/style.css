@@ -1,64 +1,83 @@
 .main_Container {
     width: 100%;
-    height: 90vh; /* Ocupa 100% da altura da tela */
+    height: 100vh;
     display: flex;
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;
+    justify-content: center;
     padding: 1em;
     transition: transform 0.5s ease-in-out;
-    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+    box-sizing: border-box;
+    margin: 0;
+    overflow: hidden;
 }
 
-/* Posicionamento */
+@media (max-width: 768px) {
+    .main_Container {
+        height: 100vh;
+        padding: 0.5em;
+    }
+}
+
 .main_Container.ultra_left {
-  transform: translateX(-200%); /* Fora da tela à esquerda */
+    transform: translateX(-200%);
 }
 
 .main_Container.left {
-  transform: translateX(-100%); /* À esquerda */
+    transform: translateX(-100%);
 }
 
 .main_Container.center {
-  transform: translateX(0); /* Centralizado */
+    transform: translateX(0);
 }
 
 .main_Container.right {
-  transform: translateX(100%); /* À direita */
+    transform: translateX(100%);
 }
 
-/* Estilos do conteúdo */
 .main_component {
-  width: 60%;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  background-color: #ECE5DD;
-  align-items: normal;
-  justify-content: left;
-  padding: 2em;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeIn 0.6s ease-in-out forwards;
+    width: 60%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #ECE5DD;
+    align-items: normal;
+    justify-content: flex-start;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+@media (max-width: 768px) {
+    .main_component {
+        width: 90%;
+        padding: 1em;
+    }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 h1 {
     font-size: 24px;
     color: #075E54;
     margin: .5em 0;
+}
 
+@media (max-width: 768px) {
+    h1 {
+        font-size: 20px;
+    }
 }
 
 .card_one_input {
@@ -75,12 +94,6 @@ h1 {
     border: 1px solid #000;
     outline: none;
     transition: border-color 0.3s ease-in-out;
-}
-
-/* Efeito de foco no input */
-.inputNumber:focus {
-    border-color: #25D366;
-    box-shadow: 0px 0px 8px rgba(37, 211, 102, 0.5);
 }
 
 .buttonNumber {
@@ -106,20 +119,37 @@ h1 {
         align-items: center;
         gap: 1em;
     }
+
+    .inputNumber {
+        max-width: 100%;
+    }
+
+    .buttonNumber {
+        width: 100%;
+    }
 }
+
 .savedNumbers_container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 10px;
     min-height: 120px;
-    max-height: 200px; 
+    max-height: 100px;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 10px;
     background: white;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 6px;
+}
+
+@media (max-width: 768px) {
+    .savedNumbers_container {
+        max-height: 150px;
+        padding: 5px;
+        justify-content: center;
+    }
 }
 
 .savedNumber {
@@ -130,9 +160,16 @@ h1 {
     color: white;
     padding: 8px 12px;
     border-radius: 6px;
-    min-width: 120px; /* Garante que não fiquem muito pequenos */
-    height: 30px; /* Altura fixa para não diminuir */
-    white-space: nowrap; /* Impede quebra de linha dentro do número */
+    min-width: 120px;
+    height: 30px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .savedNumber {
+        min-width: 100px;
+        padding: 6px 10px;
+    }
 }
 
 .deleteButton {
@@ -148,23 +185,11 @@ h1 {
     color: #ff4d4d;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .card_one_input {
-        flex-direction: column;
-    }
-
-    .savedNumbers_container {
-        justify-content: center;
-    }
-}
-/* Estilização da barra de rolagem */
 .savedNumbers_container {
-    scrollbar-width: thin; /* Para Firefox */
-    scrollbar-color: #25D366 #ECE5DD; /* Cor do thumb e track */
+    scrollbar-width: thin;
+    scrollbar-color: #25D366 #ECE5DD;
 }
 
-/* Estilização do Scroll para WebKit (Chrome, Edge, Safari) */
 .savedNumbers_container::-webkit-scrollbar {
     width: 8px;
 }
@@ -183,7 +208,6 @@ h1 {
     background: #1da851;
 }
 
-/* Animação ao excluir um item */
 @keyframes fadeOut {
     from {
         opacity: 1;
@@ -196,15 +220,50 @@ h1 {
 }
 
 .savedNumber.removing {
-    animation: fadeOut 0.3s ease-in-out forwards;
+    animation: fadeOut 0.2s ease-in-out forwards;
 }
 
 #Main {
-    transform: translateX(0); /* Centralizado */
-  }
-  #Main.active {
-    transform: translateX(0); /* Main fica no centro */
-  }
-  #Main.inactive {
-    transform: translateX(-100%); /* Main vai para a esquerda */
-  }
+    transform: translateX(0);
+}
+
+#Main.active {
+    transform: translateX(0);
+}
+
+#Main.inactive {
+    transform: translateX(-100%);
+}
+
+@media (max-width: 768px) {
+    #Main.inactive {
+        transform: translateX(-100%);
+    }
+}
+
+.customMessage {
+    width: 100%;
+    min-height: 120px;
+    max-height: 200px;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    resize: vertical;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.customMessage:focus {
+    border-color: #25D366;
+    box-shadow: 0px 0px 8px rgba(37, 211, 102, 0.5);
+}
+
+@media (max-width: 768px) {
+    .customMessage {
+        min-height: 100px;
+        max-height: 150px;
+        font-size: 0.9rem;
+    }
+}

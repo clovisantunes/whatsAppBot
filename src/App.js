@@ -65,8 +65,8 @@ function App() {
             <Main className={getPositionClass('inicio')} sendMessage={sendMessage} />
             <FunctionComponents className={getPositionClass('function')} />
             <StatusComponent className={getPositionClass('status')} />
-            <Footer />
           </div>
+            <Footer />
         </div>
         </ResendMessageContext.Provider>
         </StatusProvider>

@@ -31,7 +31,7 @@
 /* Estilos do conteúdo */
 .functionComponents_Components {
   width: 60%;
-  height: 680px;
+  height: auto;
   display: flex;
   flex-direction: column;
   background-color: #ECE5DD;
