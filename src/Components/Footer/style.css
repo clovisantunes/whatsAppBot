@@ -5,9 +5,9 @@
     padding: 2px 0; /* Espaçamento interno */
     font-size: 14px; /* Tamanho da fonte */
     bottom: 0; /* Alinha o rodapé na parte inferior */
-    width: 100%; /* Largura total */
-    position: absolute;
-    bottom: 0;
+    width: 100%;
+    margin-top: 6em;
+  
   }
   
   .footer p {

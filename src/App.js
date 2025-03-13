@@ -66,8 +66,8 @@ function App() {
             <FunctionComponents className={getPositionClass('function')} />
             <StatusComponent className={getPositionClass('status')} />
           </div>
-            <Footer />
         </div>
+            <Footer />
         </ResendMessageContext.Provider>
         </StatusProvider>
       </DelayContext.Provider>

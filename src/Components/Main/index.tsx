@@ -3,7 +3,7 @@ import "./style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputItems from "../InputsItems/index.tsx";
-import { useStatusContext } from '../../Contexts/StatusContext.tsx'; // Importe o contexto
+import { useStatusContext } from '../../Contexts/StatusContext.tsx';
 
 type MainProps = {
   id: string;
@@ -14,7 +14,7 @@ export default function Main({ id, className }: MainProps) {
   const [number, setNumber] = useState("");
   const [savedNumbers, setSavedNumbers] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
-  const { setTotalNumbersToSend } = useStatusContext(); // Acesse a função para atualizar o total de números
+  const { setTotalNumbersToSend } = useStatusContext();
 
   const isValidPhoneNumber = (num: string) => {
     return /^55\d{10}$/.test(num);
@@ -35,21 +35,35 @@ export default function Main({ id, className }: MainProps) {
   };
 
   const handleSave = () => {
-    const formattedNumber = formatPhoneNumber(number);
+    const numbersArray = number.split(/[\n, ]+/).map(num => num.trim()).filter(num => num !== "");
 
-    if (!isValidPhoneNumber(formattedNumber)) {
-      toast.error("Número inválido! Use o formato DDD + 8 dígitos (ex: 5199999999)", {
+    const validNumbers: string[] = [];
+    const invalidNumbers: string[] = [];
+
+    numbersArray.forEach(num => {
+      const formattedNumber = formatPhoneNumber(num);
+
+      if (!isValidPhoneNumber(formattedNumber)) {
+        invalidNumbers.push(num);
+      } else if (!savedNumbers.includes(formattedNumber)) {
+        validNumbers.push(formattedNumber);
+      } else {
+        toast.error(`Número já adicionado: ${formattedNumber}`, { position: "top-right" });
+      }
+    });
+
+    if (invalidNumbers.length > 0) {
+      toast.error(`Números inválidos: ${invalidNumbers.join(", ")}! Use o formato DDD + 8 dígitos (ex: 5199999999)`, {
         position: "top-right",
       });
-      return;
     }
 
-    if (!savedNumbers.includes(formattedNumber)) {
-      setSavedNumbers([...savedNumbers, formattedNumber]);
-      setNumber("");
-    } else {
-      toast.error("Número já adicionado!", { position: "top-right" });
+    if (validNumbers.length > 0) {
+      setSavedNumbers(prev => [...prev, ...validNumbers]);
+      toast.success(`Números adicionados: ${validNumbers.join(", ")}`, { position: "top-right" });
     }
+
+    setNumber("");
   };
 
   const handleDelete = (num: string) => {
@@ -62,21 +76,20 @@ export default function Main({ id, className }: MainProps) {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const inputValue = e.target.value;
-    const numericValue = inputValue.replace(/\D/g, "");
-
-    if (inputValue !== numericValue) {
-      toast.error("Apenas números são permitidos", { position: "top-right" });
-    }
-
-    setNumber(numericValue);
+    setNumber(inputValue);
   };
 
-  const handleAddFromInputItems = (num: string) => {
-    const formattedNumber = formatPhoneNumber(num);
-    if (!savedNumbers.includes(formattedNumber)) {
-      setSavedNumbers([...savedNumbers, formattedNumber]);
+  const handleAddFromInputItems = (numbers: string[]) => {
+    const formattedNumbers = numbers.map(num => formatPhoneNumber(num));
+    const uniqueNumbers = formattedNumbers.filter(num => !savedNumbers.includes(num));
+
+    if (uniqueNumbers.length > 0) {
+      setSavedNumbers(prev => [...prev, ...uniqueNumbers]);
+      toast.success(`Números adicionados: ${uniqueNumbers.join(", ")}`, { position: "top-right" });
+    } else {
+      toast.error("Nenhum número novo para adicionar.", { position: "top-right" });
     }
   };
 
@@ -84,7 +97,6 @@ export default function Main({ id, className }: MainProps) {
     setImages(newImages);
   };
 
-  // Atualiza o total de números a enviar sempre que savedNumbers mudar
   useEffect(() => {
     setTotalNumbersToSend(savedNumbers.length);
   }, [savedNumbers, setTotalNumbersToSend]);
@@ -98,13 +110,12 @@ export default function Main({ id, className }: MainProps) {
             <h1>Digite o número a ser enviado à mensagem:</h1>
           </div>
           <div className="card_one_input">
-            <input
+            <textarea
               className="inputNumber"
-              type="text"
-              placeholder="Digite o número (ex: 5199999999)"
+              placeholder="Digite os números separados por vírgulas, espaços ou quebras de linha (ex: 5199999999, 5198888888)"
               value={number}
               onChange={handleInputChange}
-              maxLength={12}
+              rows={5}
             />
             <button className="buttonNumber" onClick={handleSave}>
               Salvar
