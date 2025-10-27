@@ -2,10 +2,14 @@ import React from "react";
 import './style.css';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  
   return (
     <footer className="footer">
-      <p>© 2021 - Todos os direitos reservados</p>
-      <p>copy Clovis Antunes - Dev</p>
+      <div className="footer-content">
+        <p>© {currentYear} - Todos os direitos reservados</p>
+        <p className="developer">Desenvolvido por Clovis Antunes</p>
+      </div>
     </footer>
   );
 }

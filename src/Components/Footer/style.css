@@ -1,15 +1,71 @@
 .footer {
-    background-color: #272727; /* Cor de fundo escura */
-    color: #fff; /* Cor do texto branco */
-    text-align: center; /* Centraliza o texto */
-    padding: 2px 0; /* Espaçamento interno */
-    font-size: 14px; /* Tamanho da fonte */
-    bottom: 0; /* Alinha o rodapé na parte inferior */
-    width: 100%;
-    margin-top: 6em;
-  
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #e0e0e0;
+  text-align: center;
+  padding: 0.5rem 0;
+  width: 100%;
+  border-top: 1px solid #404040;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.developer {
+  color: #888;
+  font-size: 0.8rem !important;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .footer {
+    padding: 0.8rem 0;
   }
   
   .footer p {
-    margin: 5px 0; /* Espaçamento entre os parágrafos */
+    font-size: 0.85rem;
   }
+  
+  .developer {
+    font-size: 0.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 0.6rem 0;
+  }
+  
+  .footer-content {
+    padding: 0 0.5rem;
+  }
+  
+  .footer p {
+    font-size: 0.8rem;
+    margin: 0.2rem 0;
+  }
+  
+  .developer {
+    font-size: 0.7rem !important;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .footer {
+    padding: 0.4rem 0;
+  }
+  
+  .footer p {
+    margin: 0.1rem 0;
+    font-size: 0.75rem;
+  }
+}

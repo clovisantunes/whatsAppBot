@@ -6,16 +6,16 @@ import FunctionComponents from './Components/FunctionComponents/index.tsx';
 import StatusComponent from './Components/StatusComponent/index.tsx';
 import './App.css';
 import Footer from './Components/Footer/index.tsx';
-import ImageContext from './Contexts/ImageContext.ts'; // Importe o contexto das imagens
-import DelayContext from './Contexts/DelayContext.ts'; // Importe o contexto do atraso
+import ImageContext from './Contexts/ImageContext.ts';
+import DelayContext from './Contexts/DelayContext.ts';
 import ResendMessageContext from './Contexts/ResendMessageContext.ts';
 import { StatusProvider } from './Contexts/StatusContext.tsx';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState('inicio');
   const [socket, setSocket] = useState(null);
-  const [images, setImages] = useState([]); // Estado para as imagens
-  const [delay, setDelay] = useState(0); // Estado para o atraso
+  const [images, setImages] = useState([]);
+  const [delay, setDelay] = useState(0);
   const [resendMessage, setResendMessage] = useState(null);
 
   useEffect(() => {
@@ -26,9 +26,7 @@ function App() {
       console.log('Mensagem recebida do servidor:', data);
     });
 
-    return () => {
-      newSocket.disconnect();
-    };
+    return () => newSocket.disconnect();
   }, []);
 
   const handleNavClick = (component) => {
@@ -36,42 +34,35 @@ function App() {
   };
 
   const getPositionClass = (component) => {
-    switch (activeComponent) {
-      case 'inicio':
-        return component === 'inicio' ? 'center' : component === 'function' ? 'right' : 'ultra_right';
-      case 'function':
-        return component === 'inicio' ? 'left' : component === 'function' ? 'center' : 'right';
-      case 'status':
-        return component === 'inicio' ? 'ultra_left' : component === 'function' ? 'left' : 'center';
-      default:
-        return '';
-    }
+    const positions = {
+      inicio: { inicio: 'center', function: 'right', status: 'ultra_right' },
+      function: { inicio: 'left', function: 'center', status: 'right' },
+      status: { inicio: 'ultra_left', function: 'left', status: 'center' }
+    };
+    return positions[activeComponent]?.[component] || '';
   };
 
   const sendMessage = (message) => {
-    if (socket) {
-      socket.emit('message', message);
-    }
+    socket?.emit('message', message);
   };
 
   return (
     <ImageContext.Provider value={{ images, setImages }}>
-      <DelayContext.Provider value={{ delay, setDelay }}> 
-      <StatusProvider>
-      <ResendMessageContext.Provider value={{ resendMessage, setResendMessage }}>
-        <div className="App">
-          <NavBar onNavClick={handleNavClick} />
-          <div className="container">
-            <Main className={getPositionClass('inicio')} sendMessage={sendMessage} />
-            <FunctionComponents className={getPositionClass('function')} />
-            <StatusComponent className={getPositionClass('status')} />
-          </div>
-        </div>
-            <Footer />
-        </ResendMessageContext.Provider>
+      <DelayContext.Provider value={{ delay, setDelay }}>
+        <StatusProvider>
+          <ResendMessageContext.Provider value={{ resendMessage, setResendMessage }}>
+            <div className="App">
+              <NavBar onNavClick={handleNavClick} activeComponent={activeComponent} />
+              <div className="container">
+                <Main className={`component ${getPositionClass('inicio')}`} sendMessage={sendMessage} />
+                <FunctionComponents className={`component ${getPositionClass('function')}`} />
+                <StatusComponent className={`component ${getPositionClass('status')}`} />
+              </div>
+              <Footer />
+            </div>
+          </ResendMessageContext.Provider>
         </StatusProvider>
       </DelayContext.Provider>
-
     </ImageContext.Provider>
   );
 }
